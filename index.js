@@ -3,7 +3,7 @@ var express = require('express'),
     ejsLayouts = require('express-ejs-layouts'),
     bodyParser = require('body-parser'),
     db = require("./models"),
-    port = (3000 || process.env.PORT),
+    // port = (3000 || process.env.PORT),
     cloudinary = require('cloudinary');
 
 app.use(express.static('public'));
@@ -56,11 +56,7 @@ app.post('/problems', function(req, res) {
     res.render('index');
   });
 
-
-
-
-
 });
 
-app.listen(port);
+app.listen(3000 || process.env.PORT);
 
