@@ -30,9 +30,10 @@ app.get('/', function(req,res) {
 });
 
 app.get('/problems', function(req, res) {
-  db.problem.findAll().then(function(problems) {
-    res.send(problems);
-  });
+  // db.problem.findAll().then(function(problems) {
+  //   res.send(problems);
+  // });
+  res.send('success')
 });
 
 app.post('/problems', function(req, res) {

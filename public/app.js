@@ -68,6 +68,7 @@ function getProblems(map) {
     url: '/problems',
     method: 'GET',
     success: function(data) {
+      console.log('get problem list');
       problemsArray = data;
       problemsArray.forEach(function(problem) {
         console.log(problem);
@@ -93,7 +94,6 @@ function getProblems(map) {
       });
     }
   });
-  console.log('get problem list')
 };
 
 function setLatLng(event) {
