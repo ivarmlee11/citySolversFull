@@ -39,21 +39,18 @@ app.get('/problems', function(req, res) {
 
 app.post('/problems', function(req, res) {
   //post problems to db
-  console.log(req.body)
-
-
+  console.log(req.body);
     db.problem.create({
     title: req.body.problemTitle,
     description: req.body.description,
     locationName: req.body.location,
     typeId: req.body.type_id,
     lat: req.body.lat,
-    lng: req.body.lng
-    // picture: result.url
+    lng: req.body.lng,
+    picture: req.body.picture
   }).then(function(data) {
   });
   res.render('index');
-
 });
 
 app.listen(process.env.PORT || 3000);

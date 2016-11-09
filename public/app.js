@@ -12,8 +12,9 @@ function initMap() {
     center: {lat: -47.397, lng: 122.644},
     zoom: 11
   });
-
+  console.log('-----')
   getProblems(map);
+  console.log('-----')
   
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -21,7 +22,6 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(pos)
       map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
       
     }, function() {
@@ -44,7 +44,6 @@ function initMap() {
     if(allowMarkerDrop) {
       var position = setLatLng(e);
       markers = [position];
-      console.log(markers[0])
       addMarker(markers[0], map);
       var geocoder = new google.maps.Geocoder;
       geocoder.geocode({'location': markers[0]}, function(results, status) {
@@ -62,6 +61,11 @@ function initMap() {
   });
 };
 
+$.cloudinary.config({
+  cloud_name: 'dzcy6ewty',
+  api_key: 566988178887742
+});
+
 function getProblems(map) {
   var problemsArray = [];
   $.ajax({
@@ -70,10 +74,16 @@ function getProblems(map) {
     success: function(data) {
       console.log('get problem list');
       problemsArray = data;
+      console.log(problemsArray.length);
       problemsArray.forEach(function(problem) {
-        console.log(problem);
         var contentString = '<div><strong>' + problem.title + '</strong></div>' + 
         '<div>' + problem.description + '</div>';
+
+        if(problem.picture !== '') {
+          contentString += 
+          '<div><img src="http://res.cloudinary.com/dzcy6ewty/image/upload/' + 
+          problem.picture + '"/></div>';
+        };
 
         var infowindow = new google.maps.InfoWindow({
           content: contentString
@@ -142,7 +152,25 @@ function CenterControl(controlDiv, map, text) {
   });
 };
 
-$(function(){
+$(function() {
+
+  var publicId;
+  $('#form').append($.cloudinary.unsigned_upload_tag("zg51wn0o", 
+    { cloud_name: 'dzcy6ewty' }))
+    .bind('cloudinarydone', function(e, data) {
+      console.log(data.result);
+      publicId = data.result.path;
+      $('.cloudinary_fileupload').hide();
+    $('.thumbnails').append($.cloudinary.image(data.result.public_id, 
+      { format: 'jpg',
+        width: 150,
+        height: 100, 
+        crop: 'thumb',
+        effect: 'saturation:50'
+      } 
+    ))
+  });
+
   $('#submitFormButton').on('click', function(e) {
     e.preventDefault();
     var dataObj = new Object();
@@ -152,7 +180,7 @@ $(function(){
     dataObj['description'] = $('#description').val();
     dataObj['location'] = $('#location').val();
     dataObj['type_id'] = $('#problemType').val();
-    // dataObj['image'] = $('#image').val();
+    dataObj['picture'] = (publicId || null);
     $.ajax({
       url: '/problems',
       method: 'POST',
