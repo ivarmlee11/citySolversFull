@@ -91,7 +91,7 @@ function getProblems(map) {
 
         if(problem.picture !== '') {
           contentString += 
-          '<div><img src="http://res.cloudinary.com/dzcy6ewty/image/upload/w_350,c_scale/' + 
+          '<div><img src="https://res.cloudinary.com/dzcy6ewty/image/upload/w_350,c_scale/' + 
           problem.picture + '"/></div>';
         };
 
