@@ -28,6 +28,16 @@ function initMap() {
     });
   };
 
+  $.getJSON('https://ipinfo.io/geo', function(response) { 
+    var loc = response.loc.split(',');
+    var coords = {
+        lat: parseFloat(loc[0]),
+        lng: parseFloat(loc[1])
+    };
+    console.log(coords)
+    map.setCenter(coords);
+})
+
   var centerControlDiv = document.createElement('div');
   if (formSubmitted) {
     var centerControl = new CenterControl(centerControlDiv, map, 'Drop A Pin and Click Here');
