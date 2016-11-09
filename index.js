@@ -30,10 +30,11 @@ app.get('/', function(req,res) {
 });
 
 app.get('/problems', function(req, res) {
-  // db.problem.findAll().then(function(problems) {
-  //   res.send(problems);
-  // });
-  res.send('success')
+  console.log('working');
+  db.problem.findAll().then(function(problems) {
+    console.log('data base queried');
+    res.send(problems);
+  });
 });
 
 app.post('/problems', function(req, res) {
