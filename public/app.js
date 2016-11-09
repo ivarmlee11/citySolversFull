@@ -12,9 +12,8 @@ function initMap() {
     center: {lat: -47.397, lng: 122.644},
     zoom: 11
   });
-  
+
   if (navigator.geolocation) {
-    console.log('navigator working');
     navigator.geolocation.getCurrentPosition(function(position) {
       pos = {
         lat: position.coords.latitude,
@@ -24,20 +23,17 @@ function initMap() {
       
     }, function() {
     });
-
-  } else {
-
+  };
+  
+  if (!navigator.geolocation) {
     $.getJSON('https://ipinfo.io/geo', function(response) { 
       var loc = response.loc.split(',');
       var coords = {
           lat: parseFloat(loc[0]),
           lng: parseFloat(loc[1])
-      };
-      console.log(coords);
-      console.log('ipinfo ajax call');
-      map.setCenter(coords);
+      };  
+        map.setCenter(coords);
     });
-
   };
 
   var centerControlDiv = document.createElement('div');
