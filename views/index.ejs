@@ -1,0 +1,110 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img id="logo" src="./img/small.png"/>
+      <a class="navbar-brand" href="http://www.citysolvers.com/">City Solvers</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://twitter.com/MyCitySolvers"><i class="fa fa-twitter fa-4x fa-align-center" aria-hidden="true"></i></a></li>
+
+            <li><a href="https://www.instagram.com/citysolvers/"><i class="fa fa-instagram fa-4x fa-align-center" aria-hidden="true"></i></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="map"></div>
+
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Submit A Problem</h4>
+      </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+
+        <form id="form" class="form-horizontal" action="/problems" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="col-sm-2 control-label text-center"
+            for="problemTitle">Title</label>
+            <div class="col-sm-5">
+              <input id="problemTitle" name="problem" type="text" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="form-group"> 
+            <label  class="col-sm-2 control-label text-center" for="description">Description</label>
+            <div class="col-sm-5">
+              <input id="description" name="description" type="text" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="form-group">    
+            <label  class="col-sm-2 control-label text-center" for="location">City Name</label>
+            <div class="col-sm-5">
+              <input id="location" name="location" type="text" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label text-center" for="problemType">
+            Problem Type
+            </label>
+            <select id="problemType" name="type_id" class="styled-select gray semi-square col-sm-2">
+              <option value="1" selected><h2>Pothole</h2></option> 
+              <option value="2"><h2>Bike Lane</h2></option>
+              <option value="3"><h2>Other</h2></option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input id="image_input" name="image" type="file"/>
+              <div id="imageInfo"></div>
+              <hr>
+              <button id="submitFormButton" type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+        </form>              
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-footer container-fluid">
+  <div class="col-md-2">
+    <span>                                              </span>
+  </div>
+  <div class="col-md-3">
+    <strong>Unaddressed Problem</strong>
+    <img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"/>
+  </div>
+  <div class="col-md-3">
+    <strong>Fix/Plan in Progress</strong>
+    <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"/>
+  </div>
+  <div class="col-md-3">
+    <strong>Problem Fixed</strong>
+    <img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png"/>
+  </div>
+</div>
