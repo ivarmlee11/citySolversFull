@@ -190,6 +190,8 @@ $(function() {
       }
     });
     $('#myModalHorizontal').modal('hide');
+    $('.thumbnails').html('');
+    $('.cloudinary_fileupload').show();
     allowControlCreationOnMapReload = !allowControlCreationOnMapReload;
     allowMarkerDrop = !allowMarkerDrop;
     initMap();
