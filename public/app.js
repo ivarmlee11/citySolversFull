@@ -13,6 +13,8 @@ function initMap() {
     zoom: 11
   });
 
+  getProblems(map);
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       pos = {
@@ -20,7 +22,6 @@ function initMap() {
         lng: position.coords.longitude
       };
       map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
-      
     }, function() {
     });
   };
@@ -59,10 +60,10 @@ function initMap() {
           if (results[1]) {
             $('#location').val(results[1].formatted_address);
           } else {
-            window.alert('No results found');
+            console.log('No results found');
           }
         } else {
-          window.alert('Geocoder failed due to: ' + status);
+          console.log('Geocoder failed due to: ' + status);
         }
       });
     };
