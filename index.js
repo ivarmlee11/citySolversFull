@@ -25,8 +25,6 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-
-
 app.get('/', function(req,res) {
   res.render('index');
 });
@@ -36,8 +34,6 @@ app.get('/problems', function(req, res) {
     res.send(problems)
   });
 });
-
-
 
 app.post('/problems', function(req, res) {
   //post problems to db
@@ -58,5 +54,5 @@ app.post('/problems', function(req, res) {
 
 });
 
-app.listen(3000 || process.env.PORT);
+app.listen(process.env.PORT || 3000);
 
