@@ -31,7 +31,7 @@ app.get('/', function(req,res) {
 
 app.get('/problems', function(req, res) {
   db.problem.findAll().then(function(problems) {
-    res.send(problems)
+    res.send(problems);
   });
 });
 
@@ -49,8 +49,8 @@ app.post('/problems', function(req, res) {
     lng: req.body.lng
     // picture: result.url
   }).then(function(data) {
-    res.render('index');
   });
+  res.render('index');
 
 });
 
